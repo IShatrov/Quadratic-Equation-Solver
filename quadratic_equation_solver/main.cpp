@@ -9,6 +9,7 @@
 #define ZERO 0.0000000001
 
 int getnum(double * num);
+int solve(double a, double b, double c);
 
 int main(void)
 {
@@ -21,8 +22,33 @@ int main(void)
     getnum(&b);
     printf("Please enter c.\n");
     getnum(&c);
-    printf("Solving %.4fx^2 + %.4fx + %.4f = 0\n", a, b, c);
+    solve(a, b, c);
+    return 0;
+}
 
+int getnum(double * num)
+{
+    assert(num);
+    double n = NAN;
+    scanf("%lf", &n);
+    char c = getchar();
+    while (c != '\n')
+    {
+        while (c != '\n')
+        {
+            c = getchar();
+        }
+        printf("This does not seem to be a valid number. %s", RULES);
+        scanf("%lf", &n);
+        c = getchar();
+    }
+    *num = n;
+    return 0;
+}
+
+int solve(double a, double b, double c)
+{
+    printf("Solving %.4fx^2 + %.4fx + %.4f = 0\n", a, b, c);
     double d = b * b - 4 * a * c;
     if (a)
     {
@@ -52,25 +78,5 @@ int main(void)
             printf("%.4f", x1);
         }
     }
-    return 0;
-}
-
-int getnum(double * num)
-{
-    assert(num);
-    double n = NAN;
-    scanf("%lf", &n);
-    char c = getchar();
-    while (c != '\n')
-    {
-        while (c != '\n')
-        {
-            c = getchar();
-        }
-        printf("This does not seem to be a valid number. %s", RULES);
-        scanf("%lf", &n);
-        c = getchar();
-    }
-    *num = n;
     return 0;
 }
