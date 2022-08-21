@@ -31,11 +31,12 @@ int getnum(double * num)
     assert(num);
     double n = NAN;
     scanf("%lf", &n);
-    char c = getchar(), trash[1000];
+    char trash[1000];
+    int c = getchar();
     while (c != '\n')
     {
         printf("This does not seem to be a valid number. %s", RULES);
-        scanf("%s", &trash);
+        scanf("%s", trash);
         scanf("%lf", &n);
         c = getchar();
     }
@@ -47,7 +48,7 @@ int solve(double a, double b, double c)
 {
     printf("Solving %.4fx^2 + %.4fx + %.4f = 0\n", a, b, c);
     double d = b * b - 4 * a * c;
-    if (a)
+    if (a > ZERO || a < -ZERO)
     {
         if (d > 0)
         {
@@ -56,7 +57,7 @@ int solve(double a, double b, double c)
             double x2 = (-b - sq_d) / (2 * a);
             printf("%.4f; %.4f", MIN_OF_TWO(x1, x2), MAX_OF_TWO(x1, x2));
         }
-        else if (d == 0)
+        else if (fabs(d - ZERO) <= ZERO)
         {
             double x1 = -b / (2 * a);
             printf("%.4f", x1);
@@ -68,7 +69,7 @@ int solve(double a, double b, double c)
     }
     else
     {
-        if (b == 0) printf("%s", (c == 0) ? "x can be any real number." : "No real solutions.");
+        if (fabs(b - ZERO) <= ZERO) printf("%s", (fabs(c - ZERO) <= ZERO) ? "x can be any real number." : "No real solutions.");
         else
         {
             double x1 = -c / b;
