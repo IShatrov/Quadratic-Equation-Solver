@@ -57,7 +57,7 @@ int main(void)
 int getnum(double * num)
 {
     char current_char = '0', input[1050];
-    int allright_flag = NAN, minus_flag = NAN, point_flag = NAN, i = NAN;
+    int allright_flag = 1, minus_flag = 0, point_flag = 0, i = 1;
     while (1)
     {
         allright_flag = 1;
