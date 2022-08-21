@@ -28,8 +28,9 @@ int main(void)
     {
         if (d > 0)
         {
-            double x1 = (-b + sqrt(d)) / (2 * a);
-            double x2 = (-b - sqrt(d)) / (2 * a);
+            double sq_d = sqrt(d);
+            double x1 = (-b + sq_d) / (2 * a);
+            double x2 = (-b - sq_d) / (2 * a);
             printf("%.4f; %.4f", MIN_OF_TWO(x1, x2), MAX_OF_TWO(x1, x2));
         }
         else if (d == 0)
