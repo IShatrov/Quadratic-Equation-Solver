@@ -31,14 +31,11 @@ int getnum(double * num)
     assert(num);
     double n = NAN;
     scanf("%lf", &n);
-    char c = getchar();
+    char c = getchar(), trash[1000];
     while (c != '\n')
     {
-        while (c != '\n')
-        {
-            c = getchar();
-        }
         printf("This does not seem to be a valid number. %s", RULES);
+        scanf("%s", &trash);
         scanf("%lf", &n);
         c = getchar();
     }
