@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 #include <ctype.h>
+#include <string.h>
+#include <assert.h>
 
 #define MAX_OF_TWO(n1, n2) ((n1 > n2) ? (n1) : (n2))
 #define MIN_OF_TWO(n1, n2) ((n1 > n2) ? (n2) : (n1))
@@ -57,6 +59,7 @@ int main(void)
 
 int getnum(double * num)
 {
+    assert(num);
     char current_char = '0', input[1050];
     int allright_flag = 1, minus_flag = 0, point_flag = 0, i = 1;
     while (1)
