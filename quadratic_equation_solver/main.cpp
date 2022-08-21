@@ -23,19 +23,18 @@ int main(void)
     getnum(&c);
     printf("Solving %.4fx^2 + %.4fx + %.4f = 0\n", a, b, c);
 
-    double d = NAN, x1 = NAN, x2 = NAN;
-    d = b * b - 4 * a * c;
+    double d = b * b - 4 * a * c;
     if (a)
     {
         if (d > 0)
         {
-            x1 = (-b + sqrt(d)) / (2 * a);
-            x2 = (-b - sqrt(d)) / (2 * a);
+            double x1 = (-b + sqrt(d)) / (2 * a);
+            double x2 = (-b - sqrt(d)) / (2 * a);
             printf("%.4f; %.4f", MIN_OF_TWO(x1, x2), MAX_OF_TWO(x1, x2));
         }
         else if (d == 0)
         {
-            x1 = -b / (2 * a);
+            double x1 = -b / (2 * a);
             printf("%.4f", x1);
         }
         else
@@ -48,7 +47,7 @@ int main(void)
         if (b == 0) printf("%s", (c == 0) ? "x can be any real number." : "No real solutions.");
         else
         {
-            x1 = -c / b;
+            double x1 = -c / b;
             printf("%.4f", x1);
         }
     }
