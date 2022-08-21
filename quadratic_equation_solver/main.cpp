@@ -11,8 +11,7 @@ int getnum(double * num);
 
 int main(void)
 {
-    double a = 0, b = 0, c = 0, x1 = 0, x2 = 0, d = 0;
-
+    double a = 0, b = 0, c = 0;
     printf("ax^2 + bx + c = 0\n");
     printf(RULES);
     printf("Please enter a.\n");
@@ -23,6 +22,7 @@ int main(void)
     getnum(&c);
     printf("Solving %.4fx^2 + %.4fx + %.4f = 0\n", a, b, c);
 
+    double d = 0, x1 = 0, x2 = 0;
     d = b * b - 4 * a * c;
     if (a)
     {
