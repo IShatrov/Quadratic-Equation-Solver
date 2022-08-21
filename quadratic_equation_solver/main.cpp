@@ -7,11 +7,11 @@
 #define MIN_OF_TWO(n1, n2) ((n1 > n2) ? (n2) : (n1))
 #define RULES "Use point as the decimal separator. Numbers must be shorter than 1000 symbols.\n"
 
-int getnum(float * num);
+int getnum(double * num);
 
 int main(void)
 {
-    float a = 0, b = 0, c = 0, x1 = 0, x2 = 0, d = 0;
+    double a = 0, b = 0, c = 0, x1 = 0, x2 = 0, d = 0;
 
     printf("ax^2 + bx + c = 0\n");
     printf(RULES);
@@ -54,7 +54,7 @@ int main(void)
     return 0;
 }
 
-int getnum(float * num)
+int getnum(double * num)
 {
     char current_char = '0', input[1050];
     int allright_flag = 1, minus_flag = 0, point_flag = 0, i = 1;
