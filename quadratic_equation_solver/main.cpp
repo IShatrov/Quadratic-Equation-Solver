@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <ctype.h>
-#include <string.h>
 #include <assert.h>
 
 #define MAX_OF_TWO(n1, n2) ((n1 > n2) ? (n1) : (n2))
@@ -60,44 +58,19 @@ int main(void)
 int getnum(double * num)
 {
     assert(num);
-    char current_char = '0', input[1050];
-    int allright_flag = 1, minus_flag = 0, point_flag = 0, i = 1;
-    while (1)
+    double n = NAN;
+    scanf("%lf", &n);
+    char c = getchar();
+    while (c != '\n')
     {
-        allright_flag = 1;
-        minus_flag = 0;
-        point_flag = 0;
-        i = 1;
-        current_char = getchar();
-        if (isdigit(current_char) || current_char == '-')
+        while (c != '\n')
         {
-            minus_flag = (current_char == '-');
-            input[0] = current_char;
-            current_char = getchar();
+            c = getchar();
         }
-        else allright_flag = 0;
-        while (current_char != '\n')
-        {
-            if (allright_flag && (isdigit(current_char) || (current_char == '.' && minus_flag && i >= 2 && !point_flag) ||
-                 (current_char == '.' && !minus_flag && i >= 1 && !point_flag)) && (i < 1000))
-            {
-                input[i] = current_char;
-                i++;
-                point_flag += (current_char == '.');
-                current_char = getchar();
-            }
-            else
-            {
-                allright_flag = 0;
-                current_char = getchar();
-            }
-        }
-        input[i] = '\0';
-        if (allright_flag && !(input[0] == '-' && input[1] == '\0'))
-        {
-            *num = atof(input);
-            return 1;
-        }
-        else printf("This does not seem to be a valid number. %s", RULES);
+        printf("This does not seem to be a valid number. %s", RULES);
+        scanf("%lf", &n);
+        c = getchar();
     }
+    *num = n;
+    return 0;
 }
