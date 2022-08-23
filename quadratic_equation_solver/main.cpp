@@ -9,9 +9,9 @@
 #define EPSILON 1e-7
 #define INF_ROOTS 3
 
-void getnum(double * num);
-int solve_quadr(double a, double b, double c, double * x1, double * x2);
-int solve_lin(double a, double b, double * x);
+void getnum(double *num);
+int solve_quadr(double a, double b, double c, double *x1, double *x2);
+int solve_lin(double a, double b, double *x);
 int are_doubles_equal(double n1, double n2);
 void clear_buffer(void);
 
@@ -50,7 +50,7 @@ int main(void)
     return 0;
 }
 
-void getnum(double * num)
+void getnum(double *num)
 {
     assert(num != NULL);
     double n = NAN;
@@ -66,7 +66,7 @@ void getnum(double * num)
     *num = n;
 }
 
-int solve_quadr(double a, double b, double c, double * x1, double * x2)
+int solve_quadr(double a, double b, double c, double *x1, double *x2)
 {
     assert(!isnan(a));
     assert(!isnan(b));
@@ -77,19 +77,19 @@ int solve_quadr(double a, double b, double c, double * x1, double * x2)
     assert(x1 != NULL);
     assert(x2 != NULL);
     assert(x1 != x2);
-    double d = b * b - 4 * a * c;
+    double d = b*b - 4*a*c;
     if (!are_doubles_equal(a, 0))
     {
         if (d > 0)
         {
             double sq_d = sqrt(d);
-            *x1 = (-b + sq_d) / (2 * a);
-            *x2 = (-b - sq_d) / (2 * a);
+            *x1 = (-b + sq_d) / (2*a);
+            *x2 = (-b - sq_d) / (2*a);
             return 2;
         }
         else if (are_doubles_equal(d, 0))
         {
-            *x1 = -b / (2 * a);
+            *x1 = -b / (2*a);
             return 1;
         }
         else
@@ -104,7 +104,7 @@ int solve_quadr(double a, double b, double c, double * x1, double * x2)
     return -1;
 }
 
-int solve_lin(double a, double b, double * x)
+int solve_lin(double a, double b, double *x)
 {
     assert(!isnan(a));
     assert(!isnan(b));
