@@ -10,7 +10,8 @@
 #define INF_ROOTS 3
 
 void getnum(double * num);
-int solve(double a, double b, double c, double * x1, double * x2);
+int solve_quadr(double a, double b, double c, double * x1, double * x2);
+int solve_lin(double a, double b, double * x);
 int are_doubles_equal(double n1, double n2);
 void clear_buffer(void);
 
@@ -26,7 +27,7 @@ int main(void)
     printf("Please enter c.\n");
     getnum(&c);
     double x1 = NAN, x2 = NAN;
-    int roots_amount = solve(a, b, c, &x1, &x2);
+    int roots_amount = solve_quadr(a, b, c, &x1, &x2);
     printf("Solving %.4fx^2 + %.4fx + %.4f = 0\n", a, b, c);
     switch (roots_amount)
     {
@@ -65,7 +66,7 @@ void getnum(double * num)
     *num = n;
 }
 
-int solve(double a, double b, double c, double * x1, double * x2)
+int solve_quadr(double a, double b, double c, double * x1, double * x2)
 {
     assert(!isnan(a));
     assert(!isnan(b));
@@ -98,14 +99,24 @@ int solve(double a, double b, double c, double * x1, double * x2)
     }
     else
     {
-        if (are_doubles_equal(b, 0)) return ((are_doubles_equal(c, 0)) ? INF_ROOTS : 0);
-        else
-        {
-            *x1 = -c / b;
-            return 1;
-        }
+        return solve_lin(b, c, x1);
     }
     return -1;
+}
+
+int solve_lin(double a, double b, double * x)
+{
+    assert(!isnan(a));
+    assert(!isnan(b));
+    assert(!isinf(a));
+    assert(!isinf(b));
+    assert(x != NULL);
+    if (are_doubles_equal(a, 0)) return ((are_doubles_equal(b, 0)) ? INF_ROOTS : 0);
+    else
+    {
+        *x = -b / a;
+        return 1;
+    }
 }
 
 int are_doubles_equal(double n1, double n2)
