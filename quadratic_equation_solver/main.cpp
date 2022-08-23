@@ -12,6 +12,7 @@
 void getnum(double * num);
 int solve(double a, double b, double c, double * x1, double * x2);
 int are_doubles_equal(double n1, double n2);
+void clear_buffer(void);
 
 int main(void)
 {
@@ -56,10 +57,7 @@ void getnum(double * num)
     int c = getchar();
     while (c != '\n')
     {
-        while (c != '\n')
-        {
-            c = getchar();
-        }
+        clear_buffer();
         printf("This does not seem to be a valid number. %s", RULES);
         scanf("%lf", &n);
         c = getchar();
@@ -117,4 +115,13 @@ int are_doubles_equal(double n1, double n2)
     assert(!isinf(n1));
     assert(!isinf(n2));
     return (fabs(n1 - n2) <= EPSILON);
+}
+
+void clear_buffer(void)
+{
+    int c = 0;
+    while (c != '\n')
+    {
+        c = getchar();
+    }
 }
