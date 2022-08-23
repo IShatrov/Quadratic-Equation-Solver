@@ -6,10 +6,11 @@
 #define MAX_OF_TWO(n1, n2) ((n1 > n2) ? (n1) : (n2))
 #define MIN_OF_TWO(n1, n2) ((n1 > n2) ? (n2) : (n1))
 #define RULES "Use point as the decimal separator. Numbers must be shorter than 1000 symbols.\n"
-#define EPSILON 0.0000000001
+#define EPSILON 0e-7
+#define INF 2e6
 
-int getnum(double * num);
-int solve(double a, double b, double c);
+void getnum(double * num);
+int solve(double a, double b, double c, double * x1, double * x2);
 int are_doubles_equal(double n1, double n2);
 
 int main(void)
@@ -23,11 +24,31 @@ int main(void)
     getnum(&b);
     printf("Please enter c.\n");
     getnum(&c);
-    solve(a, b, c);
+    printf("Solving %.4fx^2 + %.4fx + %.4f = 0\n", a, b, c);
+    double x1 = NAN, x2 = NAN;
+    int roots_amount = solve(a, b, c, &x1, &x2);
+    switch (roots_amount)
+    {
+        case 2:
+            printf("%.4f; %.4f", MIN_OF_TWO(x1, x2), MAX_OF_TWO(x1, x2));
+            break;
+        case 1:
+            printf("%.4f", x1);
+            break;
+        case 0:
+            printf("No real solutions.");
+            break;
+        case INF:
+            printf("x can be any real number.");
+            break;
+        default:
+            printf("error");
+            break;
+    }
     return 0;
 }
 
-int getnum(double * num)
+void getnum(double * num)
 {
     assert(num);
     double n = NAN;
@@ -44,42 +65,42 @@ int getnum(double * num)
         c = getchar();
     }
     *num = n;
-    return 0;
 }
 
-int solve(double a, double b, double c)
+int solve(double a, double b, double c, double * x1, double * x2)
 {
-    printf("Solving %.4fx^2 + %.4fx + %.4f = 0\n", a, b, c);
+    assert(x1);
+    assert(x2);
     double d = b * b - 4 * a * c;
     if (!are_doubles_equal(a, 0))
     {
         if (d > 0)
         {
             double sq_d = sqrt(d);
-            double x1 = (-b + sq_d) / (2 * a);
-            double x2 = (-b - sq_d) / (2 * a);
-            printf("%.4f; %.4f", MIN_OF_TWO(x1, x2), MAX_OF_TWO(x1, x2));
+            *x1 = (-b + sq_d) / (2 * a);
+            *x2 = (-b - sq_d) / (2 * a);
+            return 2;
         }
         else if (are_doubles_equal(d, 0))
         {
-            double x1 = -b / (2 * a);
-            printf("%.4f", x1);
+            *x1 = -b / (2 * a);
+            return 1;
         }
         else
         {
-            printf("No real solutions.");
+            return 0;
         }
     }
     else
     {
-        if (are_doubles_equal(b, 0)) printf("%s", (are_doubles_equal(c, 0)) ? "x can be any real number." : "No real solutions.");
+        if (are_doubles_equal(b, 0)) return ((are_doubles_equal(c, 0)) ? INF : 0);
         else
         {
-            double x1 = -c / b;
-            printf("%.4f", x1);
+            *x1 = -c / b;
+            return 1;
         }
     }
-    return 0;
+    return -1;
 }
 
 int are_doubles_equal(double n1, double n2)
