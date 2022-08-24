@@ -99,10 +99,7 @@ int solve_quadr(double a, double b, double c, double *x1, double *x2)
             return 0;
         }
     }
-    else
-    {
-        return solve_lin(b, c, x1);
-    }
+    return solve_lin(b, c, x1);
 }
 
 int solve_lin(double a, double b, double *x)
