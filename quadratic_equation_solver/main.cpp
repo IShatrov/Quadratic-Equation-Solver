@@ -103,7 +103,6 @@ int solve_quadr(double a, double b, double c, double *x1, double *x2)
     {
         return solve_lin(b, c, x1);
     }
-    return -1;
 }
 
 int solve_lin(double a, double b, double *x)
