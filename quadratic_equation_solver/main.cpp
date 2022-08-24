@@ -5,9 +5,9 @@
 
 #define MAX_OF_TWO(n1, n2) ((n1 > n2) ? (n1) : (n2))
 #define MIN_OF_TWO(n1, n2) ((n1 > n2) ? (n2) : (n1))
-#define RULES "Use point as the decimal separator. Numbers must be shorter than 1000 symbols.\n"
 #define EPSILON 1e-7
-#define INF_ROOTS 3
+
+enum roots_amount {INF_ROOTS = 3};
 
 void getnum(double *num);
 int solve_quadr(double a, double b, double c, double *x1, double *x2);
@@ -20,7 +20,6 @@ int main(void)
     double a = NAN, b = NAN, c = NAN;
 
     printf("ax^2 + bx + c = 0\n");
-    printf(RULES);
     printf("Please enter a.\n");
     getnum(&a);
     printf("Please enter b.\n");
@@ -47,7 +46,7 @@ int main(void)
             printf("x can be any real number.");
             break;
         default:
-            printf("error");
+            printf("Incorrect solutions amount");
             break;
     }
     return 0;
@@ -64,7 +63,7 @@ void getnum(double *num)
     while (c != '\n')
     {
         clear_buffer();
-        printf("This does not seem to be a valid number. %s", RULES);
+        printf("This does not seem to be a valid number.\n");
         scanf("%lf", num);
         c = getchar();
     }
@@ -126,16 +125,13 @@ int solve_lin(double a, double b, double *x)
     if (are_doubles_equal(a, 0)) return ((are_doubles_equal(b, 0)) ? INF_ROOTS : 0);
     else
     {
-        *x = -b / a;
+        *x = (are_doubles_equal(b, 0) ? 0 : -b / a);
         return 1;
     }
 }
 
 int are_doubles_equal(double n1, double n2)
 {
-    assert(isfinite(n1));
-    assert(isfinite(n2));
-
     return (fabs(n1 - n2) <= EPSILON);
 }
 
