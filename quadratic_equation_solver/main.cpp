@@ -57,18 +57,17 @@ void getnum(double *num)
 {
     assert(num != NULL);
 
-    double n = NAN;
-    scanf("%lf", &n);
+    *num = NAN;
+    scanf("%lf", num);
     int c = getchar();
 
     while (c != '\n')
     {
         clear_buffer();
         printf("This does not seem to be a valid number. %s", RULES);
-        scanf("%lf", &n);
+        scanf("%lf", num);
         c = getchar();
     }
-    *num = n;
 }
 
 int solve_quadr(double a, double b, double c, double *x1, double *x2)
