@@ -73,12 +73,9 @@ void getnum(double *num)
 
 int solve_quadr(double a, double b, double c, double *x1, double *x2)
 {
-    assert(!isnan(a));
-    assert(!isnan(b));
-    assert(!isnan(c));
-    assert(!isinf(a));
-    assert(!isinf(b));
-    assert(!isinf(c));
+    assert(isfinite(a));
+    assert(isfinite(b));
+    assert(isfinite(c));
     assert(x1 != NULL);
     assert(x2 != NULL);
     assert(x1 != x2);
@@ -112,10 +109,8 @@ int solve_quadr(double a, double b, double c, double *x1, double *x2)
 
 int solve_lin(double a, double b, double *x)
 {
-    assert(!isnan(a));
-    assert(!isnan(b));
-    assert(!isinf(a));
-    assert(!isinf(b));
+    assert(isfinite(a));
+    assert(isfinite(b));
     assert(x != NULL);
 
     if (are_doubles_equal(a, 0)) return ((are_doubles_equal(b, 0)) ? INF_ROOTS : 0);
@@ -128,10 +123,8 @@ int solve_lin(double a, double b, double *x)
 
 int are_doubles_equal(double n1, double n2)
 {
-    assert(!isnan(n1));
-    assert(!isnan(n2));
-    assert(!isinf(n1));
-    assert(!isinf(n2));
+    assert(isfinite(n1));
+    assert(isfinite(n2));
 
     return (fabs(n1 - n2) <= EPSILON);
 }
