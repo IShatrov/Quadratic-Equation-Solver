@@ -79,27 +79,42 @@ int solve_quadr(double a, double b, double c, double *x1, double *x2)
     assert(x2 != NULL);
     assert(x1 != x2);
 
+    if (are_doubles_equal(a, 0)) return solve_lin(b, c, x1);
+
     double d = b*b - 4*a*c;
-    if (!are_doubles_equal(a, 0))
+    if (are_doubles_equal(b, 0) && c < 0)
     {
-        if (d > 0)
+        *x1 = sqrt(-c / a);
+        *x2 = -*x1;
+        return 2;
+    }
+    else if (are_doubles_equal(c, 0))
+    {
+        if (are_doubles_equal(b, 0))
         {
-            double sq_d = sqrt(d);
-            *x1 = (-b + sq_d) / (2*a);
-            *x2 = (-b - sq_d) / (2*a);
-            return 2;
-        }
-        else if (are_doubles_equal(d, 0))
-        {
-            *x1 = -b / (2*a);
+            *x1 = 0;
             return 1;
         }
-        else
-        {
-            return 0;
-        }
+        *x1 = 0;
+        *x2 = -b / a;
+        return 2;
     }
-    return solve_lin(b, c, x1);
+    else if (d > 0)
+    {
+        double sq_d = sqrt(d);
+        *x1 = (-b + sq_d) / (2*a);
+        *x2 = (-b - sq_d) / (2*a);
+        return 2;
+    }
+    else if (are_doubles_equal(d, 0))
+    {
+        *x1 = -b / (2*a);
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 int solve_lin(double a, double b, double *x)
