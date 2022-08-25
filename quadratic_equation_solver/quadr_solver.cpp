@@ -16,6 +16,27 @@ void getnum(double *num)
     }
 }
 
+void print_roots(int roots_amount, double *x1, double *x2)
+{
+    switch (roots_amount)
+    {
+        case TWO_ROOTS:
+            printf("%.4f; %.4f", min_of_two(*x1, *x2), max_of_two(*x1, *x2));
+            break;
+        case ONE_ROOT:
+            printf("%.4f", *x1);
+            break;
+        case NO_ROOTS:
+            printf("No real solutions.");
+            break;
+        case INF_ROOTS:
+            printf("x can be any real number.");
+            break;
+        default:
+            printf("Incorrect solutions amount");
+    }
+}
+
 int solve_quadr(double a, double b, double c, double *x1, double *x2)
 {
     assert(isfinite(a));

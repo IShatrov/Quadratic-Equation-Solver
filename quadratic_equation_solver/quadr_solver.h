@@ -2,22 +2,12 @@
 #include <stdlib.h>
 #include <math.h>
 #include <assert.h>
+#include <string.h>
 
 //! @param[in] condition Condition.
 //! @brief If condition is false, prints an error message. Does *not* abort the program.
 #define MY_ASSERT(condition)                                                                     \
 if (!(condition)) printf("Error %s in line %d in function %s\n", #condition, __LINE__, __func__) \
-
-//! @brief If DEBUG is defined, unit tests will start after the program is launched.
-#define DEBUG 1
-
-
-//! @brief If DO_TESTS is defined as 1, unit tests will start after the program is launched. DO_TESTS is defined as 1 if DEBUG is defined.
-#ifdef DEBUG
-#define DO_TESTS 1
-#else
-#define DO_TESTS 0
-#endif
 
 //! @brief Possible amounts of solutions of the equation.
 enum roots_amount {NO_ROOTS, ONE_ROOT, TWO_ROOTS, INF_ROOTS = -1};
@@ -28,6 +18,12 @@ const double EPSILON = 1e-7;
 //! @param[in] num Pointer to the number.
 //! @brief Reads input data. If the data is not a valid number prints "This does not seem to be a valid number" and tries to read again.
 void getnum(double *num);
+
+//! @param[in] roots_amount Amount of the solutions of the equation.
+//! @param[in] x1 Pointer to x1.
+//! @param[in] x2 Pointer to x2.
+//! @brief Prints the solutions of the equation if they exits. Prints "x can be any real number." if there are infinite solutions and "No real solutions." if there are no real solutions.
+void print_roots(int roots_amount, double *x1, double *x2);
 
 //! @param[in] a a-coefficient of the equation.
 //! @param[in] b b-coefficient of the equation.
@@ -86,5 +82,5 @@ double min_of_two(double n1, double n2);
 //! @brief Tests if solve_quadr() works as expected.
 void test_eq(double a, double b, double c, int expected_nRoots, double expected_x1, double expected_x2);
 
-//! @brief Launches the tests. Gets test data from test_eq_data.txt file.
+//! @brief Launches the tests. Gets test data from test_eq_data.txt file. Prints an error message if the file was not found.
 void start_tests(void);

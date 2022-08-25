@@ -34,21 +34,27 @@ void test_eq(double a, double b, double c, int expected_nRoots, double expected_
 void start_tests(void)
 {
     FILE *test_data = NULL;
-    test_data = fopen("test_eq_data.txt", "r");
 
-    int ch = '0';
-    char a[20], b[20], c[20], expected_x1[20], expected_x2[20], expected_nRoots[20];
-
-    while (ch != EOF)
+    if ((test_data = fopen("test_eq_data.txt", "r")))
     {
-        fscanf(test_data, "%s %s %s %s %s %s", a, b, c, expected_nRoots, expected_x1, expected_x2);
-        ch = getc(test_data);
-        test_eq(strtod(a, '\0'), strtod(b, '\0'), strtod(c, '\0'), atoi(expected_nRoots), strtod(expected_x1, '\0'), strtod(expected_x2, '\0'));
+        int ch = '0';
+        char a[20], b[20], c[20], expected_x1[20], expected_x2[20], expected_nRoots[20];
+
+        while (ch != EOF)
+        {
+            fscanf(test_data, "%s %s %s %s %s %s", a, b, c, expected_nRoots, expected_x1, expected_x2);
+            ch = getc(test_data);
+            test_eq(strtod(a, '\0'), strtod(b, '\0'), strtod(c, '\0'), atoi(expected_nRoots), strtod(expected_x1, '\0'), strtod(expected_x2, '\0'));
+        }
+
+        if (fclose(test_data) == 0) printf("Test data file closed successfully\n");
+
+        printf("Tests finished\n");
     }
-
-    if (fclose(test_data) == 0) printf("Test data file closed successfully\n");
-
-    printf("Tests finished\n");
+    else
+    {
+        printf("test_eq_data.txt not found\n");
+    }
 }
 
 //There must be a better way to read NANs from file!
