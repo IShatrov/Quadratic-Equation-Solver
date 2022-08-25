@@ -50,3 +50,5 @@ void start_tests(void)
 
     printf("Tests finished\n");
 }
+
+//There must be a better way to read NANs from file!

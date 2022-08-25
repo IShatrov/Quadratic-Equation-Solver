@@ -27,7 +27,6 @@ int solve_quadr(double a, double b, double c, double *x1, double *x2)
 
     if (are_doubles_equal (a, 0)) return solve_lin (b, c, x1);
 
-    double d = b*b - 4*a*c;
     if (are_doubles_equal(b, 0) && c < 0)
     {
         *x1 = sqrt(-c / a);
@@ -45,7 +44,10 @@ int solve_quadr(double a, double b, double c, double *x1, double *x2)
         *x2 = -b / a;
         return 2;
     }
-    else if (d > 0)
+
+    double d = b*b - 4*a*c;
+
+    if (d > 0)
     {
         double sq_d = sqrt(d);
         *x1 = (-b + sq_d) / (2*a);
