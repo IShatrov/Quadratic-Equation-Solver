@@ -33,7 +33,7 @@ void print_roots(int roots_amount, double *x1, double *x2)
             printf("x can be any real number.");
             break;
         default:
-            printf("Incorrect solutions amount");
+            assert(0 && "Incorrect solutions amount");
     }
 }
 

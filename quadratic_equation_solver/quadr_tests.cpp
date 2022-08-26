@@ -34,28 +34,24 @@ void test_eq(double a, double b, double c, int expected_nRoots, double expected_
         }
 }
 
-void start_tests(void)
+void start_tests(char *filename)
 {
     FILE *test_data = NULL;
 
-    if ((test_data = fopen("test_eq_data.txt", "r")))
+    if ((test_data = fopen(filename, "r")))
     {
-        int ch = '0', numbers_read = 0;
+        int numbers_read = 0;
         char a[TEST_NUMBER_LENGTH] = "0", b[TEST_NUMBER_LENGTH] = "0", c[TEST_NUMBER_LENGTH] = "0",
           expected_x1[TEST_NUMBER_LENGTH] = "0", expected_x2[TEST_NUMBER_LENGTH] = "0", expected_nRoots[TEST_NUMBER_LENGTH] = "0";
-        while (ch != EOF)
+        while (numbers_read != EOF)
         {
             numbers_read = fscanf(test_data, "%s %s %s %s %s %s", a, b, c, expected_nRoots, expected_x1, expected_x2);
 
             if (numbers_read == 6)
             {
-                ch = getc(test_data);
                 test_eq(strtod(a, '\0'), strtod(b, '\0'), strtod(c, '\0'), atoi(expected_nRoots), strtod(expected_x1, '\0'), strtod(expected_x2, '\0'));
             }
-            else
-            {
-                printf("file reading failed\n");
-            }
+            else if (numbers_read != EOF) printf("file reading failed\n");
         }
 
         if (fclose(test_data) == 0) printf("Test data file closed successfully\n");
@@ -64,7 +60,7 @@ void start_tests(void)
     }
     else
     {
-        printf("test_eq_data.txt not found\n");
+        printf("%s not found\n", filename);
     }
 }
 

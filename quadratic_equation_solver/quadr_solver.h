@@ -85,7 +85,8 @@ double min_of_two(double n1, double n2);
 //! @brief Tests if solve_quadr() works as expected.
 void test_eq(double a, double b, double c, int expected_nRoots, double expected_x1, double expected_x2);
 
-//! @brief Launches the tests. Gets test data from test_eq_data.txt file. Prints an error message if the file was not found.
-void start_tests(void);
+//! @param[in] filename Name of a file with test data.
+//! @brief Launches the tests. By default gets test data from test_eq_data.txt file. File can be changed with a command line argument (see README.md). Prints an error message if the file was not found.
+void start_tests(char *filename);
 
 #endif

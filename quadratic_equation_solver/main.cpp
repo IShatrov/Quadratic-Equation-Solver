@@ -2,9 +2,20 @@
 
 int main(int argc, char *argv[])
 {
+    char default_test_data_filename[17] = "test_eq_data.txt";
+
     if (argc == 2 && !strcmp("do_tests", argv[1]))
     {
-        start_tests();
+        start_tests(default_test_data_filename);
+
+        getchar();
+
+        return 0;
+    }
+
+    if (argc == 3 && !strcmp("do_tests", argv[1]))
+    {
+        start_tests(argv[2]);
 
         getchar();
 
