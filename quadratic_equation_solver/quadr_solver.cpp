@@ -25,7 +25,7 @@ int solve_quadr(double a, double b, double c, double *x1, double *x2)
             return 1;
         }
         *x1 = 0;
-        *x2 = -b / a;
+        solve_lin(a, b, x2);
         return 2;
     }
 
