@@ -1,5 +1,8 @@
 #include "quadr_solver.h"
 
+//! @brief Determines maximal length of a number in test_eq_data.txt file.
+const int TEST_NUMBER_LENGTH = 20;
+
 void test_eq(double a, double b, double c, int expected_nRoots, double expected_x1, double expected_x2)
 {
         double x1 = NAN, x2 = NAN;
@@ -38,8 +41,8 @@ void start_tests(void)
     if ((test_data = fopen("test_eq_data.txt", "r")))
     {
         int ch = '0';
-        char a[20], b[20], c[20], expected_x1[20], expected_x2[20], expected_nRoots[20];
-
+        char a[TEST_NUMBER_LENGTH] = "0", b[TEST_NUMBER_LENGTH] = "0", c[TEST_NUMBER_LENGTH] = "0",
+          expected_x1[TEST_NUMBER_LENGTH] = "0", expected_x2[TEST_NUMBER_LENGTH] = "0", expected_nRoots[TEST_NUMBER_LENGTH] = "0";
         while (ch != EOF)
         {
             fscanf(test_data, "%s %s %s %s %s %s", a, b, c, expected_nRoots, expected_x1, expected_x2);

@@ -2,7 +2,14 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc == 2 && !strcmp("do_tests", argv[1])) start_tests();
+    if (argc == 2 && !strcmp("do_tests", argv[1]))
+    {
+        start_tests();
+
+        getchar();
+
+        return 0;
+    }
 
     double a = NAN, b = NAN, c = NAN;
 
