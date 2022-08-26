@@ -55,13 +55,11 @@ int solve_lin(double a, double b, double *x)
     assert(isfinite(b));
     assert(x != NULL);
 
-    if (are_doubles_equal(a, 0))
-        return ((are_doubles_equal(b, 0)) ? INF_ROOTS : 0);
-    else
-    {
-        *x = (are_doubles_equal(b, 0) ? 0 : -b / a);
-        return 1;
-    }
+    if (are_doubles_equal(a, 0)) return ((are_doubles_equal(b, 0)) ? INF_ROOTS : 0);
+
+    *x = (are_doubles_equal(b, 0) ? 0 : -b / a);
+    return 1;
+
 }
 
 int are_doubles_equal(double n1, double n2)

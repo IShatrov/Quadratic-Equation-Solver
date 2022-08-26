@@ -1,15 +1,14 @@
 #include "quadr_solver.h"
 
-int main(int argc, char *argv[])
+int main(int argc, const char *argv[])
 {
-    char default_test_data_filename[17] = "test_eq_data.txt";
+    const char *default_test_data_filename = "test_eq_data.txt";
 
     if (argc == 2 && !strcmp("do_tests", argv[1]))
     {
         start_tests(default_test_data_filename);
 
         getchar();
-
         return 0;
     }
 
@@ -18,7 +17,6 @@ int main(int argc, char *argv[])
         start_tests(argv[2]);
 
         getchar();
-
         return 0;
     }
 
@@ -32,7 +30,6 @@ int main(int argc, char *argv[])
     print_roots(roots_amount, &x1, &x2);
 
     getchar();
-
     return 0;
 }
 

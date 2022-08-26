@@ -87,6 +87,7 @@ void test_eq(double a, double b, double c, int expected_nRoots, double expected_
 
 //! @param[in] filename Name of a file with test data.
 //! @brief Launches the tests. By default gets test data from test_eq_data.txt file. File can be changed with a command line argument (see README.md). Prints an error message if the file was not found.
-void start_tests(char *filename);
+void start_tests(const char *filename);
+
 
 #endif

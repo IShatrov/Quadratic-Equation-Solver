@@ -34,7 +34,7 @@ void test_eq(double a, double b, double c, int expected_nRoots, double expected_
         }
 }
 
-void start_tests(char *filename)
+void start_tests(const char *filename)
 {
     FILE *test_data = NULL;
 
@@ -51,7 +51,11 @@ void start_tests(char *filename)
             {
                 test_eq(strtod(a, '\0'), strtod(b, '\0'), strtod(c, '\0'), atoi(expected_nRoots), strtod(expected_x1, '\0'), strtod(expected_x2, '\0'));
             }
-            else if (numbers_read != EOF) printf("file reading failed\n");
+            else if (numbers_read != EOF)
+            {
+                printf("file reading failed\n");
+                break;
+            }
         }
 
         if (fclose(test_data) == 0) printf("Test data file closed successfully\n");
