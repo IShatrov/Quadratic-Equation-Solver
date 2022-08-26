@@ -6,3 +6,5 @@ Below is an example of the program`s work:
 ![Work example](quadratic_equation_solver/screenshots/quadr_example.png)
 Command line argument do_tests can be used to launch unit tests after the program starts:
 ![Testing](quadratic_equation_solver/screenshots/quadr_testing.png)
+By default test data is read from test_eq_data.txt file. One more argument can be passed to read from another file:
+![Testing](quadratic_equation_solver/screenshots/quadr_two_arguments.png)
