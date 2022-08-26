@@ -40,14 +40,22 @@ void start_tests(void)
 
     if ((test_data = fopen("test_eq_data.txt", "r")))
     {
-        int ch = '0';
+        int ch = '0', numbers_read = 0;
         char a[TEST_NUMBER_LENGTH] = "0", b[TEST_NUMBER_LENGTH] = "0", c[TEST_NUMBER_LENGTH] = "0",
           expected_x1[TEST_NUMBER_LENGTH] = "0", expected_x2[TEST_NUMBER_LENGTH] = "0", expected_nRoots[TEST_NUMBER_LENGTH] = "0";
         while (ch != EOF)
         {
-            fscanf(test_data, "%s %s %s %s %s %s", a, b, c, expected_nRoots, expected_x1, expected_x2);
-            ch = getc(test_data);
-            test_eq(strtod(a, '\0'), strtod(b, '\0'), strtod(c, '\0'), atoi(expected_nRoots), strtod(expected_x1, '\0'), strtod(expected_x2, '\0'));
+            numbers_read = fscanf(test_data, "%s %s %s %s %s %s", a, b, c, expected_nRoots, expected_x1, expected_x2);
+
+            if (numbers_read == 6)
+            {
+                ch = getc(test_data);
+                test_eq(strtod(a, '\0'), strtod(b, '\0'), strtod(c, '\0'), atoi(expected_nRoots), strtod(expected_x1, '\0'), strtod(expected_x2, '\0'));
+            }
+            else
+            {
+                printf("file reading failed\n");
+            }
         }
 
         if (fclose(test_data) == 0) printf("Test data file closed successfully\n");

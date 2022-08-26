@@ -1,3 +1,6 @@
+#ifndef QUADR_SOLVER_H
+#define QUADR_SOLVER_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -85,3 +88,4 @@ void test_eq(double a, double b, double c, int expected_nRoots, double expected_
 //! @brief Launches the tests. Gets test data from test_eq_data.txt file. Prints an error message if the file was not found.
 void start_tests(void);
 
+#endif
